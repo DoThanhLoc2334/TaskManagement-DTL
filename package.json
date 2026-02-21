@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/DoThanhLoc2334/TaskManagement-DTL/issues"
   },
-  "homepage": "https://github.com/DoThanhLoc2334/TaskManagement-DTL#readme"
+  "homepage": "https://github.com/DoThanhLoc2334/TaskManagement-DTL#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
 }
