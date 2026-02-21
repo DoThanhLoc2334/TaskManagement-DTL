@@ -1,23 +1,28 @@
 {
-  "name": "taskmanagement-dtl",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/DoThanhLoc2334/TaskManagement-DTL.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/DoThanhLoc2334/TaskManagement-DTL/issues"
-  },
-  "homepage": "https://github.com/DoThanhLoc2334/TaskManagement-DTL#readme",
-  "dependencies": {
-    "express": "^5.2.1"
-  }
+    "name": "taskmanagement-dtl",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "nodemon server.js",
+        "start": "node server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/DoThanhLoc2334/TaskManagement-DTL.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/DoThanhLoc2334/TaskManagement-DTL/issues"
+    },
+    "homepage": "https://github.com/DoThanhLoc2334/TaskManagement-DTL#readme",
+    "dependencies": {
+        "express": "^5.2.1"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.14"
+    }
 }
