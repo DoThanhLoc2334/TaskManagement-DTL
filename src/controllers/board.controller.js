@@ -1,4 +1,4 @@
-let boards = [];
+const { boards } = require('../data/data.store')
 let currentID = 1;
 const createBoard = (req, res) => {
     const { title } = req.body
