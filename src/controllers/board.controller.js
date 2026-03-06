@@ -76,9 +76,29 @@ const updateBoard = (req, res) => {
         data: board
     })
 }
+
+const closeBoard = (req, res) => {
+    const {boardId} = req.params
+    const board = boards.find(
+        board => board.id === Number(boardId)
+    )
+    if(!board) {
+        return res.status(404).json({
+            success: false,
+            message: "Board Not Found"
+        })
+    }
+    board.closed = true
+
+    res.status(200).json({
+        success: true,
+        data: board
+    })
+}
 module.exports = {
     createBoard,
     getBoards,
     getBoardById,
-    updateBoard
+    updateBoard, 
+    closeBoard
 }
