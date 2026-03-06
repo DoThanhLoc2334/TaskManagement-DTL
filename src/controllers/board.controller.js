@@ -28,7 +28,27 @@ const getBoards = (req, res) => {
     })
 }
 
+const getBoardById = (req, res) => {
+    const{boardId} = req.params
+    const board = boards.find(
+        board => board.id === Number(boardId)
+    )
+
+    if(!board){
+        return res.status(404).json({
+            success: false,
+            message: "Board not found"
+        })
+    }
+
+    res.status(200).json({
+        success: true,
+        data: board
+    })
+}
+
 module.exports = {
     createBoard,
-    getBoards
+    getBoards,
+    getBoardById
 }
