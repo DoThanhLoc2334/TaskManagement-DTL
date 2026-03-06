@@ -47,8 +47,38 @@ const getBoardById = (req, res) => {
     })
 }
 
+const updateBoard = (req, res) => {
+    const {boardId} = req.params
+    const{title} = req.body
+
+    const board = boards.find(
+        board => board.id === Number(boardId)
+    )
+
+    if(!board){
+        res.status(404).json({
+            success: false,
+            message: "Board not found"
+        })
+    }
+    if(!title)
+    {
+        res.status(404).json({
+            success: false,
+            message: "Title is requires"
+        })
+    }
+
+    board.title = title;
+
+    res.status(200).json({
+        success: true,
+        data: board
+    })
+}
 module.exports = {
     createBoard,
     getBoards,
-    getBoardById
+    getBoardById,
+    updateBoard
 }

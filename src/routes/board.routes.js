@@ -6,5 +6,5 @@ router.use('/:boardId/lists', listRoutes)
 router.post('/', boardController.createBoard);
 router.get('/', boardController.getBoards);
 router.get('/:boardId', boardController.getBoardById);
-
+router.put('/:boardId', boardController.updateBoard);
 module.exports = router;
