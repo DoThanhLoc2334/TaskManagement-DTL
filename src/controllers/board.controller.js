@@ -1,104 +1,85 @@
-const { boards } = require('../data/data.store')
-let currentID = 1;
+const boardService = require('../services/board.service')
 const createBoard = (req, res) => {
-    const { title } = req.body
-    if (!title) {
-        return res.status(400).json({
+    try {
+        const {title} = req.body
+        const newBoard = boardService.createBoard(title)
+        res.status(201).json({
+            success: true,
+            data: newBoard
+        })
+    } catch (error) {
+        res.status(400).json({
             success: false,
-            message: "Title is required"
+            message: error.message
         })
     }
-    const newBoard = {
-        id: currentID++,
-        title,
-        createBoard: new Date()
-    }
-
-    boards.push(newBoard);
-    res.status(201).json({
-        success: true,
-        data: newBoard
-    })
 }
 
 const getBoards = (req, res) => {
-    res.status(200).json({
-        success: true,
-        data: boards
-    })
+    try {
+        const boards = boardService.getBoards()
+        res.status(201).json({
+            success: true,
+            data: boards
+        })
+    } catch (error) {
+        res.status(400).json({
+            success: false,
+            message: error.message
+        })
+    }
 }
 
 const getBoardById = (req, res) => {
-    const{boardId} = req.params
-    const board = boards.find(
-        board => board.id === Number(boardId)
-    )
-
-    if(!board){
-        return res.status(404).json({
+    try {
+        const { boardId } = req.params
+        const board = boardService.getBoardById(boardId)
+        res.status(200).json({
+            success: true,
+            data: board
+        })
+    } catch (error) {
+        res.status(404).json({
             success: false,
-            message: "Board not found"
+            message: error.message
         })
     }
-
-    res.status(200).json({
-        success: true,
-        data: board
-    })
 }
 
 const updateBoard = (req, res) => {
-    const {boardId} = req.params
-    const{title} = req.body
-
-    const board = boards.find(
-        board => board.id === Number(boardId)
-    )
-
-    if(!board){
-        res.status(404).json({
+    try {
+        const {boardId} = req.params
+        const {title} = req.body
+        const board = boardService.updateBoard(boardId, title)
+        res.status(200).json({
+            success: true,
+            data: board
+        })
+    } catch (error) {
+        res.status(400).json({
             success: false,
-            message: "Board not found"
+            message: error.message
         })
     }
-    if(!title)
-    {
-        res.status(404).json({
-            success: false,
-            message: "Title is requires"
-        })
-    }
-
-    board.title = title;
-
-    res.status(200).json({
-        success: true,
-        data: board
-    })
 }
 
 const closeBoard = (req, res) => {
-    const {boardId} = req.params
-    const board = boards.find(
-        board => board.id === Number(boardId)
-    )
-    if(!board) {
-        return res.status(404).json({
-            success: false,
-            message: "Board Not Found"
+    try {
+        const {boardId} = req.params
+        const board = boardService.closeBoard(boardId)
+        res.status(200).json({
+            success: true,
+            data: board
         })
+    } catch (error) {
+        
     }
-    board.closed = true
-
-    res.status(200).json({
-        success: true,
-        data: board
-    })
 }
+
 module.exports = {
-    createBoard,
     getBoards,
+    createBoard,
     getBoardById,
-    updateBoard, 
+    updateBoard,
     closeBoard
 }
