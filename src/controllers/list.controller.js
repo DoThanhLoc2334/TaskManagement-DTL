@@ -20,11 +20,14 @@ const createList = (req, res) => {
         })
     }
 
+    const boardLists = lists.filter(
+        list => list.boardId === Number(boardId)
+    )
     const newList = {
         id: currentListId++,
-        title,
+        title, 
         boardId: Number(boardId),
-        position: lists.length + 1,
+        position: boardLists.length + 1,
         createdAt: new Date()
     }
 
@@ -57,7 +60,26 @@ const getListsByBoard = (req, res) => {
     })
 }
 
+const getListById = (req, res) => {
+    const { listId } = req.params
+    const list = lists.find(
+        list.id === Number(listId)
+    )
+
+    if(!list){
+        return res.status(404).json({
+            success: false,
+            message: "List not found"
+        })
+    }
+
+    res.status(200).json({
+        success: true,
+        data: list
+    })
+}
 module.exports = {
     createList,
-    getListsByBoard
+    getListsByBoard,
+    getListById
 }
